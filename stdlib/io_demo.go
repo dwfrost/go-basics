@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"fmt"
 	"io"
-	"io/ioutil"
 	"os"
 	"strings"
 )
@@ -44,19 +43,19 @@ func DemonstrateIO() {
 	r2 := strings.NewReader("第二部分 ")
 	r3 := strings.NewReader("第三部分")
 	readers := io.MultiReader(r1, r2, r3)
-	data, _ := ioutil.ReadAll(readers)
+	data, _ := io.ReadAll(readers)
 	fmt.Printf("合并后的数据: %s\n", data)
 
 	// TeeReader - 读取的同时写入
 	fmt.Println("\n2.5 TeeReader")
 	teeReader := io.TeeReader(strings.NewReader("TeeReader示例"), os.Stdout)
-	ioutil.ReadAll(teeReader) // 读取的同时会输出到标准输出
-	fmt.Println()             // 添加换行
+	io.ReadAll(teeReader) // 读取的同时会输出到标准输出
+	fmt.Println()         // 添加换行
 
 	// LimitReader - 限制读取的数量
 	fmt.Println("\n2.6 LimitReader")
 	original := strings.NewReader("这是一个很长的字符串，但我们只读取前10个字节")
 	limited := io.LimitReader(original, 10)
-	limitedData, _ := ioutil.ReadAll(limited)
+	limitedData, _ := io.ReadAll(limited)
 	fmt.Printf("限制读取的数据: %s\n", limitedData)
 }

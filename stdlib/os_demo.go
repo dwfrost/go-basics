@@ -27,7 +27,7 @@ func DemonstrateOS() {
 	fmt.Println("\n临时文件和目录操作示例 (代码已注释)")
 	/*
 		// 创建临时文件
-		tempFile, err := ioutil.TempFile("", "example")
+		tempFile, err := os.CreateTemp("", "example")
 		if err == nil {
 			fmt.Printf("创建临时文件: %s\n", tempFile.Name())
 			tempFile.Write([]byte("临时文件内容"))
@@ -37,7 +37,7 @@ func DemonstrateOS() {
 		}
 
 		// 创建临时目录
-		tempDir, err := ioutil.TempDir("", "example")
+		tempDir, err := os.MkdirTemp("", "example")
 		if err == nil {
 			fmt.Printf("创建临时目录: %s\n", tempDir)
 			// 删除临时目录

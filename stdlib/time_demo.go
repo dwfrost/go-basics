@@ -12,6 +12,7 @@ func DemonstrateTime() {
 	now := time.Now()
 	fmt.Printf("当前时间: %v\n", now)
 	fmt.Printf("Unix时间戳: %d\n", now.Unix())
+	fmt.Printf("毫秒时间戳: %d\n", now.UnixMilli())
 	fmt.Printf("纳秒时间戳: %d\n", now.UnixNano())
 
 	// 时间格式化
@@ -23,7 +24,7 @@ func DemonstrateTime() {
 
 	// 时间解析
 	fmt.Println("\n5.3 时间解析")
-	t, _ := time.Parse("2006-01-02", "2023-05-15")
+	t, _ := time.Parse("2006-01-02 15:04:05", "2023-05-15 15:04:05")
 	fmt.Printf("解析的时间: %v\n", t)
 
 	// 时间计算

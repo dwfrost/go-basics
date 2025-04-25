@@ -2,7 +2,7 @@ package stdlib
 
 import (
 	"fmt"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"time"
 )
@@ -19,7 +19,7 @@ func DemonstrateHTTP() {
 		fmt.Printf("内容类型: %s\n", resp.Header.Get("Content-Type"))
 
 		// 读取前100个字符的响应
-		body, _ := ioutil.ReadAll(resp.Body)
+		body, _ := io.ReadAll(resp.Body)
 		if len(body) > 100 {
 			fmt.Printf("响应体 (前100字符): %s...\n", body[:100])
 		} else {
@@ -43,7 +43,7 @@ func DemonstrateHTTP() {
 	resp, err = client.Do(req)
 	if err == nil {
 		defer resp.Body.Close()
-		body, _ := ioutil.ReadAll(resp.Body)
+		body, _ := io.ReadAll(resp.Body)
 		if len(body) > 100 {
 			fmt.Printf("响应体 (前100字符): %s...\n", body[:100])
 		} else {

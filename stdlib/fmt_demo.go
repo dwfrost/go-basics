@@ -35,8 +35,8 @@ func DemonstrateFmt() {
 	fmt.Printf("%%q 带引号字符串: %q\n", "Go语言")
 
 	// 读取输入 (注释掉以避免阻塞)
-	fmt.Println("\n1.4 读取输入 (示例代码已注释)")
 	/*
+		fmt.Println("\n1.4 读取输入 (示例代码已注释)")
 		var name string
 		var age int
 		fmt.Print("请输入姓名和年龄: ")
