@@ -4,10 +4,11 @@ import (
 	"fmt"
 	// "go-basics/constants"
 	// "go-basics/controlflow"
-	"go-basics/concurrency"
+	// "go-basics/concurrency"
 	// "go-basics/datatypes"
 	// "go-basics/functions"
 	// "go-basics/interfaces"
+	"go-basics/stdlib"
 	// "go-basics/structs"
 	// "go-basics/variables"
 )
@@ -36,13 +37,19 @@ func main() {
 	// fmt.Println("\n=== 7. 接口 ===")
 	// interfaces.DemonstrateInterfaces()
 
-	fmt.Println("\n=== 8. 并发编程 ===")
+	// fmt.Println("\n=== 8. 并发编程 ===")
 	// fmt.Println("\n--- 8.1 Goroutines ---")
 	// concurrency.DemonstrateGoroutines()
 
 	// fmt.Println("\n--- 8.2 Channels ---")
 	// concurrency.DemonstrateChannels()
 
-	fmt.Println("\n--- 8.3 实际应用 ---")
-	concurrency.DemonstratePracticalConcurrency()
+	// fmt.Println("\n--- 8.3 实际应用 ---")
+	// concurrency.DemonstratePracticalConcurrency()
+
+	// fmt.Println("\n--- 8.4 Context包 ---")
+	// concurrency.DemonstrateContext()
+
+	fmt.Println("\n=== 9. 标准库 ===")
+	stdlib.DemonstrateStdLib()
 }
