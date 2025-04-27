@@ -7,8 +7,9 @@ import (
 	// "go-basics/concurrency"
 	// "go-basics/datatypes"
 	// "go-basics/functions"
+	"go-basics/server"
 	// "go-basics/interfaces"
-	"go-basics/stdlib"
+	// "go-basics/stdlib"
 	// "go-basics/structs"
 	// "go-basics/variables"
 )
@@ -50,6 +51,9 @@ func main() {
 	// fmt.Println("\n--- 8.4 Context包 ---")
 	// concurrency.DemonstrateContext()
 
-	fmt.Println("\n=== 9. 标准库 ===")
-	stdlib.DemonstrateStdLib()
+	// fmt.Println("\n=== 9. 标准库 ===")
+	// stdlib.DemonstrateStdLib()
+
+	fmt.Println("\n=== 10. Go Http服务器 ===")
+	server.DemonstrateServer()
 }
