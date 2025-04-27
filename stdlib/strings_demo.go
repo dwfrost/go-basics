@@ -5,6 +5,9 @@ import (
 	"strconv"
 	"strings"
 	"unicode"
+
+	"golang.org/x/text/cases"
+	"golang.org/x/text/language"
 )
 
 // DemonstrateStrings 展示strings和strconv包的使用
@@ -37,7 +40,7 @@ func DemonstrateStrings() {
 	fmt.Println("\n7.4 大小写转换")
 	fmt.Printf("转大写: %s\n", strings.ToUpper("Hello, World"))
 	fmt.Printf("转小写: %s\n", strings.ToLower("Hello, World"))
-	fmt.Printf("首字母大写: %s\n", strings.Title("hello world"))
+	fmt.Printf("首字母大写: %s\n", cases.Title(language.English).String("hello world"))
 
 	// 修剪
 	fmt.Println("\n7.5 修剪")

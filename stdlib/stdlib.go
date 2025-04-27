@@ -18,11 +18,15 @@ func DemonstrateStdLib() {
 	// fmt.Println("\n4. net/http包 - HTTP客户端和服务器")
 	// DemonstrateHTTP()
 
-	fmt.Println("\n5. time包 - 时间处理")
-	DemonstrateTime()
+	// fmt.Println("\n5. time包 - 时间处理")
+	// DemonstrateTime()
 
-	// fmt.Println("\n6. encoding/json包 - JSON处理")
-	// DemonstrateJSON()
+	// 纯JSON示例
+	fmt.Println("\n6. encoding/json包 - JSON处理")
+	DemonstrateJSON()
+
+	// fmt.Println("\n6. JSON和XML编码解码")
+	// DemonstrateEncoding()
 
 	// fmt.Println("\n7. strings和strconv包 - 字符串处理")
 	// DemonstrateStrings()
