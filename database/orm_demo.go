@@ -120,6 +120,7 @@ func queryGormUsers(db *gorm.DB) {
 
 // updateGormUser 更新GORM用户
 func updateGormUser(db *gorm.DB) {
+	fmt.Println("\n4. 更新用户")
 	// 方法1: 保存整个对象
 	var user GormUser
 	db.First(&user, 1)
@@ -140,6 +141,7 @@ func updateGormUser(db *gorm.DB) {
 
 // deleteGormUser 删除GORM用户
 func deleteGormUser(db *gorm.DB) {
+	fmt.Println("\n5. 删除用户")
 	// 软删除 (由于设置了gorm.DeletedAt)
 	db.Delete(&GormUser{}, 3)
 	fmt.Println("软删除用户ID=3")
@@ -160,6 +162,7 @@ func deleteGormUser(db *gorm.DB) {
 
 // createPostsForUser 为用户创建文章
 func createPostsForUser(db *gorm.DB) {
+	fmt.Println("\n6. 创建文章")
 	// 为用户1创建文章
 	posts := []Post{
 		{Title: "第一篇文章", Content: "这是用户1的第一篇文章", UserID: 1},
