@@ -116,6 +116,10 @@ func demonstrateCompositeTypes() {
 	slice2 = append(slice2, 100, 200)
 	fmt.Printf("    追加后: %v\n", slice2)
 
+	// 删除元素
+	slice2 = append(slice2[:1], slice2[2:]...) // 删除索引为1的元素
+	fmt.Printf("    删除后: %v\n", slice2)
+
 	// 映射(Map)
 	fmt.Println("\n映射:")
 	m := map[string]int{

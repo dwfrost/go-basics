@@ -5,9 +5,9 @@ import (
 	// "go-basics/constants"
 	// "go-basics/controlflow"
 	// "go-basics/concurrency"
-	// "go-basics/datatypes"
+	"go-basics/datatypes"
 	// "go-basics/functions"
-	"go-basics/server"
+	// "go-basics/server"
 	// "go-basics/interfaces"
 	// "go-basics/stdlib"
 	// "go-basics/structs"
@@ -23,8 +23,8 @@ func main() {
 	// fmt.Println("\n=== 2. 常量 ===")
 	// constants.DemonstrateConstants()
 
-	// fmt.Println("\n=== 3. 数据类型 ===")
-	// datatypes.DemonstrateDataTypes()
+	fmt.Println("\n=== 3. 数据类型 ===")
+	datatypes.DemonstrateDataTypes()
 
 	// fmt.Println("\n=== 4. 控制结构 ===")
 	// controlflow.DemonstrateControlFlow()
@@ -54,6 +54,6 @@ func main() {
 	// fmt.Println("\n=== 9. 标准库 ===")
 	// stdlib.DemonstrateStdLib()
 
-	fmt.Println("\n=== 10. Go Http服务器 ===")
-	server.DemonstrateServer()
+	// fmt.Println("\n=== 10. Go Http服务器 ===")
+	// server.DemonstrateServer()
 }
