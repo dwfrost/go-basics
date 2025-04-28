@@ -7,11 +7,13 @@ import (
 	// "go-basics/concurrency"
 	"go-basics/datatypes"
 	// "go-basics/functions"
-	// "go-basics/server"
 	// "go-basics/interfaces"
 	// "go-basics/stdlib"
 	// "go-basics/structs"
 	// "go-basics/variables"
+	// "go-basics/server"
+	// "go-basics/database" // 新增数据库模块
+	"go-basics/filestorage"
 )
 
 func main() {
@@ -56,4 +58,10 @@ func main() {
 
 	// fmt.Println("\n=== 10. Go Http服务器 ===")
 	// server.DemonstrateServer()
+
+	// fmt.Println("\n=== 11. 数据库操作 ===")
+	// database.DemonstrateDatabase()
+
+	fmt.Println("\n=== 12. 文件存储 ===")
+	filestorage.DemonstrateFileStorage()
 }
