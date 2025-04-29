@@ -5,7 +5,7 @@ import (
 	// "go-basics/constants"
 	// "go-basics/controlflow"
 	// "go-basics/concurrency"
-	"go-basics/datatypes"
+	// "go-basics/datatypes"
 	// "go-basics/functions"
 	// "go-basics/interfaces"
 	// "go-basics/stdlib"
@@ -25,8 +25,8 @@ func main() {
 	// fmt.Println("\n=== 2. 常量 ===")
 	// constants.DemonstrateConstants()
 
-	fmt.Println("\n=== 3. 数据类型 ===")
-	datatypes.DemonstrateDataTypes()
+	// fmt.Println("\n=== 3. 数据类型 ===")
+	// datatypes.DemonstrateDataTypes()
 
 	// fmt.Println("\n=== 4. 控制结构 ===")
 	// controlflow.DemonstrateControlFlow()
