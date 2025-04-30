@@ -2,9 +2,14 @@ package httpclient
 
 import (
 	"encoding/base64"
+	"encoding/json"
 	"fmt"
 	"io"
 	"net/http"
+	"net/url"
+	"strings"
+
+	"golang.org/x/oauth2"
 )
 
 // DemonstrateAuthentication 展示HTTP认证
@@ -167,4 +172,80 @@ func apiKeyAuth() {
 	} else {
 		fmt.Printf("响应体: %s\n", body2)
 	}
+}
+
+// OAuth2 客户端示例
+type OAuth2Config struct {
+	ClientID     string
+	ClientSecret string
+	RedirectURI  string
+	AuthURL      string
+	TokenURL     string
+	Scopes       []string
+}
+
+// 1. 获取授权码
+func getAuthorizationCode(config OAuth2Config) string {
+	// 构建授权URL
+	authURL := fmt.Sprintf("%s?client_id=%s&redirect_uri=%s&response_type=code&scope=%s",
+		config.AuthURL,
+		config.ClientID,
+		url.QueryEscape(config.RedirectURI),
+		strings.Join(config.Scopes, " "))
+
+	// 重定向用户到授权页面
+	fmt.Printf("请访问此URL进行授权: %s\n", authURL)
+
+	// 等待用户授权并获取授权码
+	var code string
+	fmt.Print("请输入授权码: ")
+	fmt.Scan(&code)
+	return code
+}
+
+// 2. 使用授权码获取访问令牌
+func getAccessToken(config OAuth2Config, code string) (*oauth2.Token, error) {
+	// 构建获取令牌的请求
+	data := url.Values{}
+	data.Set("grant_type", "authorization_code")
+	data.Set("code", code)
+	data.Set("client_id", config.ClientID)
+	data.Set("client_secret", config.ClientSecret)
+	data.Set("redirect_uri", config.RedirectURI)
+
+	// 发送请求
+	resp, err := http.PostForm(config.TokenURL, data)
+	if err != nil {
+		return nil, err
+	}
+	defer resp.Body.Close()
+
+	// 解析响应
+	var token oauth2.Token
+	if err := json.NewDecoder(resp.Body).Decode(&token); err != nil {
+		return nil, err
+	}
+
+	return &token, nil
+}
+
+// 3. 使用访问令牌调用API
+func callAPI(token *oauth2.Token) {
+	req, _ := http.NewRequest("GET", "https://api.example.com/user", nil)
+	req.Header.Add("Authorization", "Bearer "+token.AccessToken)
+}
+
+// OAuth2 的令牌刷新机制
+func refreshToken(token *oauth2.Token, config OAuth2Config) (*oauth2.Token, error) {
+	if !token.Valid() {
+		// 使用刷新令牌获取新的访问令牌
+		data := url.Values{}
+		data.Set("grant_type", "refresh_token")
+		data.Set("refresh_token", token.RefreshToken)
+		data.Set("client_id", config.ClientID)
+		data.Set("client_secret", config.ClientSecret)
+
+		// 发送刷新请求...
+	}
+	return token, nil
 }

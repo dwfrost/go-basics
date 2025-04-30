@@ -14,7 +14,8 @@ import (
 	// "go-basics/server"
 	// "go-basics/database" // 新增数据库模块
 	// "go-basics/filestorage"
-	"go-basics/httpclient"
+	// "go-basics/httpclient"
+	"go-basics/cache_persist"
 )
 
 func main() {
@@ -67,6 +68,9 @@ func main() {
 	// filestorage.DemonstrateFileStorage()
 
 	// 调用HTTP客户端模块
-	fmt.Println("\n=== 13. HTTP客户端 ===")
-	httpclient.DemonstrateHTTPClient()
+	// fmt.Println("\n=== 13. HTTP客户端 ===")
+	// httpclient.DemonstrateHTTPClient()
+
+	fmt.Println("\n=== 14. 内存缓存 ===")
+	cache_persist.DemonstrateMemoryCache()
 }
