@@ -13,7 +13,7 @@ import (
 	// "go-basics/variables"
 	// "go-basics/server"
 	// "go-basics/database" // 新增数据库模块
-	"go-basics/filestorage"
+	// "go-basics/filestorage"
 	"go-basics/httpclient"
 )
 
@@ -63,9 +63,10 @@ func main() {
 	// fmt.Println("\n=== 11. 数据库操作 ===")
 	// database.DemonstrateDatabase()
 
-	fmt.Println("\n=== 12. 文件存储 ===")
-	filestorage.DemonstrateFileStorage()
+	// fmt.Println("\n=== 12. 文件存储 ===")
+	// filestorage.DemonstrateFileStorage()
 
 	// 调用HTTP客户端模块
+	fmt.Println("\n=== 13. HTTP客户端 ===")
 	httpclient.DemonstrateHTTPClient()
 }

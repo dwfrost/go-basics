@@ -11,8 +11,8 @@ import (
 func DemonstrateHTTP() {
 	// HTTP客户端 - 发送GET请求
 	fmt.Println("4.1 HTTP客户端 - GET请求")
-	fmt.Println("发送GET请求到 https://httpbin.org/get")
-	resp, err := http.Get("https://httpbin.org/get")
+	fmt.Println("发送GET请求到 https://httpbun.com/get")
+	resp, err := http.Get("https://httpbun.com/get")
 	if err == nil {
 		defer resp.Body.Close()
 		fmt.Printf("状态码: %d\n", resp.StatusCode)
@@ -35,11 +35,11 @@ func DemonstrateHTTP() {
 		Timeout: 5 * time.Second,
 	}
 
-	req, _ := http.NewRequest("GET", "https://httpbin.org/headers", nil)
+	req, _ := http.NewRequest("GET", "https://httpbun.com/headers", nil)
 	req.Header.Add("User-Agent", "Go-HTTP-Client/1.1")
 	req.Header.Add("Custom-Header", "CustomValue")
 
-	fmt.Println("发送带自定义头的请求到 https://httpbin.org/headers")
+	fmt.Println("发送带自定义头的请求到 https://httpbun.com/headers")
 	resp, err = client.Do(req)
 	if err == nil {
 		defer resp.Body.Close()

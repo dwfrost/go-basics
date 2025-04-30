@@ -36,7 +36,7 @@ func DemonstrateErrorHandling() {
 // 基本错误处理
 func basicErrorHandling() {
 	// 创建一个不存在的URL
-	url := "https://httpbin.org/status/404"
+	url := "https://httpbun.com/status/404"
 
 	// 发送请求
 	resp, err := http.Get(url)
@@ -92,7 +92,7 @@ func timeoutHandling() {
 	defer cancel()
 
 	// 创建请求
-	req, err := http.NewRequestWithContext(ctx, "GET", "https://httpbin.org/delay/3", nil)
+	req, err := http.NewRequestWithContext(ctx, "GET", "https://httpbun.com/delay/3", nil)
 	if err != nil {
 		fmt.Printf("创建请求失败: %v\n", err)
 		return
@@ -133,13 +133,12 @@ func retryMechanism() {
 
 	// 创建一个不稳定的URL (模拟随机失败)
 	urls := []string{
-		"https://httpbin.org/status/200",
-		"https://httpbin.org/status/500",
-		"https://httpbin.org/status/503",
+		"https://httpbun.com/status/200",
+		"https://httpbun.com/status/500",
+		"https://httpbun.com/status/503",
 	}
 
 	// 随机选择一个URL
-	rand.Seed(time.Now().UnixNano())
 	url := urls[rand.Intn(len(urls))]
 
 	fmt.Printf("请求URL: %s (可能随机失败)\n", url)

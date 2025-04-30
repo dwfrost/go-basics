@@ -18,18 +18,18 @@ func DemonstrateThirdPartyAPIs() {
 	godotenv.Load()
 
 	// 调用天气API
-	fmt.Println("5.1 调用天气API")
-	callWeatherAPI()
+	// fmt.Println("5.1 调用天气API")
+	// callWeatherAPI()
 
-	// 调用汇率API
-	fmt.Println("\n5.2 调用汇率API")
-	callExchangeRateAPI()
+	// // 调用汇率API
+	// fmt.Println("\n5.2 调用汇率API")
+	// callExchangeRateAPI()
 
 	// 调用GitHub API
-	fmt.Println("\n5.3 调用GitHub API")
-	callGitHubAPI()
+	// fmt.Println("\n5.3 调用GitHub API")
+	// callGitHubAPI()
 
-	// 调用新闻API
+	// // 调用新闻API
 	fmt.Println("\n5.4 调用新闻API")
 	callNewsAPI()
 }
@@ -47,6 +47,7 @@ func callWeatherAPI() {
 
 	// 添加API密钥
 	apiKey := os.Getenv("OPENWEATHER_API_KEY")
+	fmt.Printf("当前使用的 API Key: %s\n", apiKey)
 	if apiKey == "" {
 		fmt.Println("未设置OPENWEATHER_API_KEY环境变量，使用模拟数据")
 		fmt.Println("模拟数据: 北京，温度25°C，天气晴朗，湿度45%")
@@ -117,12 +118,13 @@ func callWeatherAPI() {
 // 调用汇率API
 func callExchangeRateAPI() {
 	// 创建请求URL
-	baseURL := "https://api.exchangerate.host/latest"
+	baseURL := "https://api.exchangerate.host/live"
 
 	// 添加查询参数
 	params := url.Values{}
-	params.Add("base", "CNY")
-	params.Add("symbols", "USD,EUR,JPY,GBP")
+	params.Add("source", "CNY")
+	params.Add("currencies", "USD,EUR,JPY,GBP")
+	params.Add("access_key", os.Getenv("EXCHANGERATE_API_KEY"))
 
 	// 构建完整URL
 	requestURL := fmt.Sprintf("%s?%s", baseURL, params.Encode())
@@ -168,10 +170,18 @@ func callExchangeRateAPI() {
 	}
 
 	// 提取汇率信息
-	fmt.Printf("基准货币: %s\n", result["base"])
-	fmt.Printf("日期: %s\n", result["date"])
+	fmt.Printf("基准货币: %s\n", result["source"])
+	// 将时间戳转换为本地日期格式
+	if timestamp, ok := result["timestamp"].(float64); ok {
+		// 将时间戳转换为time.Time
+		t := time.Unix(int64(timestamp), 0)
+		// 格式化为本地日期时间
+		fmt.Printf("日期: %s\n", t.Format("2006-01-02 15:04:05"))
+	} else {
+		fmt.Printf("日期: %v\n", result["timestamp"])
+	}
 
-	if rates, ok := result["rates"].(map[string]interface{}); ok {
+	if rates, ok := result["quotes"].(map[string]interface{}); ok {
 		for currency, rate := range rates {
 			fmt.Printf("%s: %.4f\n", currency, rate)
 		}
@@ -244,7 +254,7 @@ func callNewsAPI() {
 
 	// 添加查询参数
 	params := url.Values{}
-	params.Add("country", "cn")
+	params.Add("country", "us")
 	params.Add("category", "technology")
 
 	// 添加API密钥

@@ -36,7 +36,7 @@ func basicAuth() {
 	client := &http.Client{}
 
 	// 创建请求
-	req, err := http.NewRequest("GET", "https://httpbin.org/basic-auth/user/passwd", nil)
+	req, err := http.NewRequest("GET", "https://httpbun.com/basic-auth/user/passwd", nil)
 	if err != nil {
 		fmt.Printf("创建请求失败: %v\n", err)
 		return
@@ -75,14 +75,14 @@ func bearerTokenAuth() {
 	client := &http.Client{}
 
 	// 创建请求
-	req, err := http.NewRequest("GET", "https://httpbin.org/bearer", nil)
+	req, err := http.NewRequest("GET", "https://httpbun.com/bearer/valid-token", nil)
 	if err != nil {
 		fmt.Printf("创建请求失败: %v\n", err)
 		return
 	}
 
 	// 添加Bearer令牌头
-	token := "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+	token := "valid-token"
 	req.Header.Add("Authorization", "Bearer "+token)
 
 	// 发送请求
@@ -109,7 +109,7 @@ func bearerTokenAuth() {
 func apiKeyAuth() {
 	// 方法1: 在URL中添加API密钥
 	apiKey := "abcdef123456"
-	url := fmt.Sprintf("https://httpbin.org/get?api_key=%s", apiKey)
+	url := fmt.Sprintf("https://httpbun.com/get?api_key=%s", apiKey)
 
 	// 发送请求
 	resp, err := http.Get(url)
@@ -136,7 +136,7 @@ func apiKeyAuth() {
 
 	// 方法2: 在请求头中添加API密钥
 	client := &http.Client{}
-	req, err := http.NewRequest("GET", "https://httpbin.org/get", nil)
+	req, err := http.NewRequest("GET", "https://httpbun.com/get", nil)
 	if err != nil {
 		fmt.Printf("创建请求失败: %v\n", err)
 		return

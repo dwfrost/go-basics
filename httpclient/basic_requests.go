@@ -33,7 +33,7 @@ func performGETRequest() {
 	client := &http.Client{}
 
 	// 创建请求
-	req, err := http.NewRequest("GET", "https://httpbin.org/get", nil)
+	req, err := http.NewRequest("GET", "https://httpbun.com/get", nil)
 	if err != nil {
 		fmt.Printf("创建请求失败: %v\n", err)
 		return
@@ -70,7 +70,7 @@ func performPOSTRequest() {
 	data := strings.NewReader(`{"name":"张三","age":30}`)
 
 	// 创建请求
-	resp, err := http.Post("https://httpbin.org/post", "application/json", data)
+	resp, err := http.Post("https://httpbun.com/post", "application/json", data)
 	if err != nil {
 		fmt.Printf("发送POST请求失败: %v\n", err)
 		return
@@ -96,7 +96,7 @@ func performPOSTRequest() {
 // 执行带查询参数的请求
 func performRequestWithQueryParams() {
 	// 创建基础URL
-	baseURL := "https://httpbin.org/get"
+	baseURL := "https://httpbun.com/get"
 
 	// 创建查询参数
 	params := url.Values{}
@@ -138,7 +138,7 @@ func performRequestWithHeaders() {
 	client := &http.Client{}
 
 	// 创建请求
-	req, err := http.NewRequest("GET", "https://httpbin.org/headers", nil)
+	req, err := http.NewRequest("GET", "https://httpbun.com/headers", nil)
 	if err != nil {
 		fmt.Printf("创建请求失败: %v\n", err)
 		return

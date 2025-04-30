@@ -10,13 +10,13 @@ import (
 
 // DemonstrateConcurrentRequests 展示并发请求
 func DemonstrateConcurrentRequests() {
-	// 基本并发请求
-	fmt.Println("6.1 基本并发请求")
-	basicConcurrentRequests()
+	// // 基本并发请求
+	// fmt.Println("6.1 基本并发请求")
+	// basicConcurrentRequests()
 
-	// 使用工作池
-	fmt.Println("\n6.2 使用工作池")
-	requestsWithWorkerPool()
+	// // 使用工作池
+	// fmt.Println("\n6.2 使用工作池")
+	// requestsWithWorkerPool()
 
 	// 限制并发数
 	fmt.Println("\n6.3 限制并发数")
@@ -27,11 +27,11 @@ func DemonstrateConcurrentRequests() {
 func basicConcurrentRequests() {
 	// 创建要请求的URL列表
 	urls := []string{
-		"https://httpbin.org/get",
-		"https://httpbin.org/ip",
-		"https://httpbin.org/headers",
-		"https://httpbin.org/user-agent",
-		"https://httpbin.org/uuid",
+		"https://httpbun.com/get",
+		"https://httpbun.com/ip",
+		"https://httpbun.com/headers",
+		"https://httpbun.com/user-agent",
+		"https://httpbun.com/uuid",
 	}
 
 	// 创建等待组
@@ -80,16 +80,16 @@ func basicConcurrentRequests() {
 func requestsWithWorkerPool() {
 	// 创建要请求的URL列表
 	urls := []string{
-		"https://httpbin.org/get",
-		"https://httpbin.org/ip",
-		"https://httpbin.org/headers",
-		"https://httpbin.org/user-agent",
-		"https://httpbin.org/uuid",
-		"https://httpbin.org/delay/1",
-		"https://httpbin.org/delay/2",
-		"https://httpbin.org/delay/1",
-		"https://httpbin.org/delay/2",
-		"https://httpbin.org/delay/1",
+		"https://httpbun.com/get",
+		"https://httpbun.com/ip",
+		"https://httpbun.com/headers",
+		"https://httpbun.com/user-agent",
+		"https://httpbun.com/uuid",
+		"https://httpbun.com/delay/1",
+		"https://httpbun.com/delay/2",
+		"https://httpbun.com/delay/1",
+		"https://httpbun.com/delay/2",
+		"https://httpbun.com/delay/1",
 	}
 
 	// 设置工作池大小
@@ -160,16 +160,16 @@ func requestsWithWorkerPool() {
 func requestsWithRateLimiting() {
 	// 创建要请求的URL列表
 	urls := []string{
-		"https://httpbin.org/get",
-		"https://httpbin.org/ip",
-		"https://httpbin.org/headers",
-		"https://httpbin.org/user-agent",
-		"https://httpbin.org/uuid",
-		"https://httpbin.org/delay/1",
-		"https://httpbin.org/delay/1",
-		"https://httpbin.org/delay/1",
-		"https://httpbin.org/delay/1",
-		"https://httpbin.org/delay/1",
+		"https://httpbun.com/get",
+		"https://httpbun.com/ip",
+		"https://httpbun.com/headers",
+		"https://httpbun.com/user-agent",
+		"https://httpbun.com/uuid",
+		"https://httpbun.com/delay/1",
+		"https://httpbun.com/delay/1",
+		"https://httpbun.com/delay/1",
+		"https://httpbun.com/delay/1",
+		"https://httpbun.com/delay/1",
 	}
 
 	// 设置限流参数

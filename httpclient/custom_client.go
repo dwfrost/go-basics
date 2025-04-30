@@ -31,7 +31,7 @@ func clientWithTimeout() {
 
 	// 发送请求
 	start := time.Now()
-	resp, err := client.Get("https://httpbin.org/delay/2") // 延迟2秒的接口
+	resp, err := client.Get("https://httpbun.com/delay/2") // 延迟2秒的接口
 	duration := time.Since(start)
 
 	if err != nil {
@@ -78,7 +78,7 @@ func clientWithProxy() {
 	}
 
 	// 发送请求
-	resp, err := client.Get("https://httpbin.org/ip")
+	resp, err := client.Get("https://httpbun.com/ip")
 	if err != nil {
 		fmt.Printf("请求失败: %v\n", err)
 		return
@@ -114,7 +114,7 @@ func clientWithCustomTransport() {
 	}
 
 	// 发送请求
-	resp, err := client.Get("https://httpbin.org/get")
+	resp, err := client.Get("https://httpbun.com/get")
 	if err != nil {
 		fmt.Printf("请求失败: %v\n", err)
 		return

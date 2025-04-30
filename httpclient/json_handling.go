@@ -57,7 +57,7 @@ func sendJSONData() {
 	}
 
 	// 创建请求
-	req, err := http.NewRequest("POST", "https://httpbin.org/post", bytes.NewBuffer(jsonData))
+	req, err := http.NewRequest("POST", "https://httpbun.com/anything", bytes.NewBuffer(jsonData))
 	if err != nil {
 		fmt.Printf("创建请求失败: %v\n", err)
 		return
@@ -95,7 +95,7 @@ func sendJSONData() {
 // 解析JSON响应
 func parseJSONResponse() {
 	// 发送请求
-	resp, err := http.Get("https://httpbin.org/json")
+	resp, err := http.Get("https://httpbun.com/anything")
 	if err != nil {
 		fmt.Printf("发送请求失败: %v\n", err)
 		return
@@ -119,42 +119,36 @@ func parseJSONResponse() {
 
 	// 打印解析结果
 	fmt.Println("解析的JSON数据:")
-	fmt.Printf("- 标题: %v\n", result["slideshow"].(map[string]interface{})["title"])
-	fmt.Printf("- 作者: %v\n", result["slideshow"].(map[string]interface{})["author"])
-	fmt.Printf("- 日期: %v\n", result["slideshow"].(map[string]interface{})["date"])
-
-	// 获取幻灯片
-	slides := result["slideshow"].(map[string]interface{})["slides"].([]interface{})
-	fmt.Printf("- 幻灯片数量: %d\n", len(slides))
-	for i, slide := range slides {
-		slideMap := slide.(map[string]interface{})
-		fmt.Printf("  幻灯片 %d: 标题=%v, 类型=%v\n",
-			i+1, slideMap["title"], slideMap["type"])
+	for key, value := range result {
+		fmt.Printf("- %s: %v\n", key, value)
 	}
 }
 
 // 使用结构体处理JSON
 func useStructsWithJSON() {
 	// 定义响应结构
-	type Slide struct {
-		Title string   `json:"title"`
-		Type  string   `json:"type"`
-		Items []string `json:"items,omitempty"`
+	type HTTPResponse struct {
+		Method  string            `json:"method"`
+		URL     string            `json:"url"`
+		Headers map[string]string `json:"headers"`
+		Origin  string            `json:"origin"`
+		Data    string            `json:"data,omitempty"`
 	}
 
-	type Slideshow struct {
-		Title  string  `json:"title"`
-		Author string  `json:"author"`
-		Date   string  `json:"date"`
-		Slides []Slide `json:"slides"`
+	// 创建请求
+	req, err := http.NewRequest("GET", "https://httpbun.com/anything", nil)
+	if err != nil {
+		fmt.Printf("创建请求失败: %v\n", err)
+		return
 	}
 
-	type Response struct {
-		Slideshow Slideshow `json:"slideshow"`
-	}
+	// 添加自定义请求头
+	req.Header.Add("X-Custom-Header", "Hello")
+	req.Header.Add("User-Agent", "Go-HTTP-Client")
 
 	// 发送请求
-	resp, err := http.Get("https://httpbin.org/json")
+	client := &http.Client{}
+	resp, err := client.Do(req)
 	if err != nil {
 		fmt.Printf("发送请求失败: %v\n", err)
 		return
@@ -169,7 +163,7 @@ func useStructsWithJSON() {
 	}
 
 	// 解析JSON到结构体
-	var response Response
+	var response HTTPResponse
 	err = json.Unmarshal(body, &response)
 	if err != nil {
 		fmt.Printf("JSON解析失败: %v\n", err)
@@ -178,16 +172,12 @@ func useStructsWithJSON() {
 
 	// 打印结构体数据
 	fmt.Println("使用结构体解析的JSON数据:")
-	fmt.Printf("- 标题: %s\n", response.Slideshow.Title)
-	fmt.Printf("- 作者: %s\n", response.Slideshow.Author)
-	fmt.Printf("- 日期: %s\n", response.Slideshow.Date)
-	fmt.Printf("- 幻灯片数量: %d\n", len(response.Slideshow.Slides))
-
-	for i, slide := range response.Slideshow.Slides {
-		fmt.Printf("  幻灯片 %d: 标题=%s, 类型=%s\n",
-			i+1, slide.Title, slide.Type)
-		if len(slide.Items) > 0 {
-			fmt.Printf("    项目: %v\n", slide.Items)
-		}
+	fmt.Printf("- 请求方法: %s\n", response.Method)
+	fmt.Printf("- 请求URL: %s\n", response.URL)
+	fmt.Printf("- 来源IP: %s\n", response.Origin)
+	fmt.Printf("- 返回data: %s\n", response.Data)
+	fmt.Println("- 请求头:")
+	for key, value := range response.Headers {
+		fmt.Printf("  %s: %s\n", key, value)
 	}
 }
